@@ -238,3 +238,18 @@ function strip_args(method) {
         method.call(this);
     };
 }
+
+/**
+ * Provides a retrocompatible way to retrive slow_down_factor
+ *
+ * @returns {Number}
+ */
+function compat_get_slow_down_factor() {
+    if (St.Settings) {
+        const settings = St.Settings.get();
+
+        return settings.slow_down_factor;
+    } else {
+        return St.get_slow_down_factor();
+    }
+}

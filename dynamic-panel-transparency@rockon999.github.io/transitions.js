@@ -10,6 +10,7 @@ const Me = imports.misc.extensionUtils.getCurrentExtension();
 
 const Settings = Me.imports.settings;
 const Theming = Me.imports.theming;
+const Util = Me.imports.util;
 
 const Equations = imports.tweener.equations;
 
@@ -96,7 +97,7 @@ function fade_in() {
     }
 
     if (!Settings.get_hide_corners()) {
-        let speed = St.Settings.slow_down_factor * Settings.get_transition_speed();
+        let speed = Util.compat_get_slow_down_factor() * Settings.get_transition_speed();
 
         let maximized = Settings.get_maximized_opacity();
         let unmaximized = !this.status.is_transparent() ? maximized : Settings.get_unmaximized_opacity();
@@ -154,7 +155,7 @@ function fade_out() {
 
     // TODO: Figure out how to write the panel corners in pure CSS.
     if (!Settings.get_hide_corners()) {
-        let speed = St.Settings.slow_down_factor * Settings.get_transition_speed();
+        let speed = Util.compat_get_slow_down_factor() * Settings.get_transition_speed();
 
         let unmaximized = Settings.get_unmaximized_opacity();
         let maximized = this.status.is_transparent() ? unmaximized : Settings.get_maximized_opacity();
@@ -205,7 +206,7 @@ function blank_fade_out() {
 
     // TODO: These corners...
     if (!Settings.get_hide_corners()) {
-        let speed = St.Settings.slow_down_factor * Settings.get_transition_speed();
+        let speed = Util.compat_get_slow_down_factor() * Settings.get_transition_speed();
 
         let maximized = Settings.get_maximized_opacity();
 
